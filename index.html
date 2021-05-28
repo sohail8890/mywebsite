@@ -1,45 +1,5 @@
 
-<?php
-
-
-$server = "localhost";
-$username = "root";
-$password = "";
-$database = "sohailportfolio";
-
-$conn = mysqli_connect($server, $username, $password, $database);
-
-if(!$conn){
-//   echo "Successfull";
-// }
-// else{
-  echo "Failed to connect";
-}
-
-$showAlert= false;
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  
-  $name = $_POST["name"];
-  $email = $_POST["email"];
-  $subject = $_POST["subject"];
-  $message = $_POST["msg"];
-
-  // $exists = false;
-  // check whether this username exist
-  $sql = "INSERT INTO `data` ( `name`, `email`, `subject`, `message`, `dt`) VALUES ('$name', '$email', ' $subject ', ' $message', current_timestamp())";
-  $result = mysqli_query($conn , $sql);
-   
-  if($result){
-
-    $showAlert =true;
-  }
-  
-
-
-}
-?>
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,15 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
    
     <!-- home section start -->
     <section class="home" id="home">
-    <?php
-if($showAlert){
-echo '
-<div class=" max-width alert alert-success alert-dismissible fade show" role="alert">
-  <strong>Success! </strong> Your data has been submitted successfully!!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
-</div>';
-}
-?>
+    
       <div class="max-width">
           <div class="row">
             <div class="home-content">
@@ -313,7 +265,7 @@ echo '
                 </div>
                 <div class="column right">
                     <div class="text">Message me</div>
-                    <form class="contact-form1" action="index.php" method="POST">
+                    <form class="contact-form1" action="data.php" method="POST">
                         <div class="fields">
                             <div class="field name">
                                 <input type="text" class="fullname required" name="name" placeholder="Name" >
