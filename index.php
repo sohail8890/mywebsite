@@ -1,0 +1,349 @@
+
+<?php
+
+
+$server = "localhost";
+$username = "root";
+$password = "";
+$database = "sohailportfolio";
+
+$conn = mysqli_connect($server, $username, $password, $database);
+
+if(!$conn){
+//   echo "Successfull";
+// }
+// else{
+  echo "Failed to connect";
+}
+
+$showAlert= false;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+  
+  $name = $_POST["name"];
+  $email = $_POST["email"];
+  $subject = $_POST["subject"];
+  $message = $_POST["msg"];
+
+  // $exists = false;
+  // check whether this username exist
+  $sql = "INSERT INTO `data` ( `name`, `email`, `subject`, `message`, `dt`) VALUES ('$name', '$email', ' $subject ', ' $message', current_timestamp())";
+  $result = mysqli_query($conn , $sql);
+   
+  if($result){
+
+    $showAlert =true;
+  }
+  
+
+
+}
+?>
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@1,500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="scroll-up-btn">
+        <i class="fas fa-angle-up"></i>
+    </div>
+    <nav class="navbar">
+        <div class="max-width">
+            <div class="logo"><a href="#">&ltSohail<span>Bhati/&gt</span></a></div>
+            <ul class="menu">
+                <li><a href="#home" class="menu-btn">Home</a></li>
+                <li><a href="#about" class="menu-btn">About</a></li>
+                <li><a href="#services" class="menu-btn">Services</a></li>
+                <li><a href="#skills" class="menu-btn">Skills</a></li>
+                <li><a href="#teams" class="menu-btn">Education</a></li>
+                <li><a href="#contact" class="menu-btn">Contact</a></li>
+            </ul>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+   
+    <!-- home section start -->
+    <section class="home" id="home">
+    <?php
+if($showAlert){
+echo '
+<div class=" max-width alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Success! </strong> Your data has been submitted successfully!!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">X</button>
+</div>';
+}
+?>
+      <div class="max-width">
+          <div class="row">
+            <div class="home-content">
+                <div class="text-1">Hello, my name is</div>
+                <div class="text-2">Sohail Bhati</div>
+                <div class="text-3">And I'm a <span class="typing"></span></div>
+                <a href="#contact">Hire me</a>
+            </div>
+          </div>
+      </div>
+      <div class="social-icons max-width">
+        <a href="https://github.com/sohail8890" class="fa fa-github"></a>
+        <a href="https://www.instagram.com/sohail.exe/" class="fa fa-instagram"></a>
+        <a href="https://www.linkedin.com/in/sohail-bhati-6164ba135" class="fa fa-linkedin"></a>
+        <a href="https://twitter.com/SohailB48469802" class="fa fa-twitter"></a>
+        <a href="https://www.facebook.com/profile.php?id=100009369044580" class="fa fa-facebook"></a>
+        
+      </div>
+        
+        
+      </div>
+    </section>
+
+    <!-- about section start -->
+    <section class="about" id="about">
+        <div class="max-width">
+            <h2 class="title">About me</h2>
+            <div class="about-content">
+                <div class="column left">
+                    <img src="images/profile-1.JPEG" alt="">
+                    <!-- <img src="images/profile-1.jpeg" alt=""> -->
+                </div>
+                <div class="column right">
+                    <div class="text">I'm Sohail and I'm a <span class="typing-2"></span></div>
+                    <p>Looking for an entry-level position in IT Sector to expand my
+                        knowledge and skills and work for the overall growth of an
+                        organization.</p>
+                    <a href="Resume.pdf" target="_blank">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- services section start -->
+    <section class="services" id="services">
+        <div class="max-width">
+            <h2 class="title">My services</h2>
+            <div class="serv-content">
+                <div class="card">
+                    <div class="box">
+                      <i class="far fa-file-code"></i>
+                        <div class="text">Front-end Web Design</div>
+                        <p>(Beginner)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <i class="fab fa-php"></i>
+                        <div class="text">PHP</div>
+                        <p>(Beginner)</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                      <i class="fab fa-laravel"></i>
+                        <div class="text">Laravel</div>
+                        <p>(Beginner)</p>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- skills section start -->
+    <section class="skills" id="skills">
+        <div class="max-width">
+            <h2 class="title">My skills</h2>
+            <div class="skills-content">
+                <div class="column left">
+                    <div class="text">My creative skills & experiences.</div>
+                    <p><ul>
+                        <li>Attended Larsen & Toubro Vacation Training Programme. <br>
+                            May-June 2017</li>
+                            <li>Attended Industry Oriented Technology Workshop (IOW-2017)
+                                on Python-Django. <br>
+                                February 2017</li>
+                                <li>Made a forum project using php with dynamic web pages, Where all the data is pulled through databse.</li>
+                    </ul></p>
+                    <a href="#">Read more</a>
+                </div>
+                <div class="column right">
+                    <div class="bars">
+                        <div class="info">
+                            <span>HTML</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="line html"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>CSS</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="line css"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>JavaScript</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="line js"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>PHP</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="line php"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>MySQL</span>
+                            <span>50%</span>
+                        </div>
+                        <div class="line mysql"></div>
+                    </div>
+                    <div class="bars">
+                        <div class="info">
+                            <span>Laravel</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="line laravel"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- teams section start -->
+    <section class="teams" id="teams">
+        <div class="max-width">
+            <h2 class="title">Education</h2>
+            <div class="carousel owl-carousel">
+                <div class="card">
+                    <div class="box">
+                        <img src="images/university.jpg" alt="">
+                        <div class="text">Mumbai University</div>
+                        <p>B.TECH(Information Technology)-Pursuing
+                          [JUNE 2018] – [JUNE 2021]
+                          CGPA- 7
+                          </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <img src="images/university.jpg" alt="">
+                        <div class="text">Mumbai University</div>
+                        <p>Diploma in Computer Engineering
+                          [JUNE 2016] – [JUNE 2018]
+                          TOTAL MARKS- 80%
+                          </p>
+                    </div>
+                </div>
+                <!-- <div class="card">
+                    <div class="box">
+                        <img src="images/profile-3.jpeg" alt="">
+                        <div class="text">Someone name</div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <img src="images/profile-4.jpeg" alt="">
+                        <div class="text">Someone name</div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="box">
+                        <img src="images/profile-5.jpeg" alt="">
+                        <div class="text">Someone name</div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact section start -->
+    <section class="contact" id="contact">
+        <div class="max-width">
+            <h2 class="title">Contact me</h2>
+            <div class="contact-content">
+                <div class="column left">
+                    <div class="text">Get in Touch</div>
+                    <p></p>
+                    <div class="icons">
+                        <div class="row">
+                            <i class="fas fa-user"></i>
+                            <div class="info">
+                                <div class="head">Name</div>
+                                <div class="sub-title">Sohail Bhati</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="info">
+                                <div class="head">Address</div>
+                                <div class="sub-title">Mumbai, India</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <i class="fas fa-envelope"></i>
+                            <div class="info">
+                                <div class="head">Email</div>
+                                <div class="sub-title">bhati889066@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column right">
+                    <div class="text">Message me</div>
+                    <form class="contact-form1" action="index.php" method="POST">
+                        <div class="fields">
+                            <div class="field name">
+                                <input type="text" class="fullname required" name="name" placeholder="Name" >
+                            </div>
+                            <div class="field email">
+                                <input type="text" class="email-input " name="email" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <input type="text" class="subject" name="subject" placeholder="Subject">
+                        </div>
+                        <div class="field textarea">
+                            <textarea class="message" cols="30" rows="10" name="msg" placeholder="Message.."></textarea>
+                        </div>
+                        <div class="button-area">
+                            <button class="" type="submit" name="" onclick="myfunction()">Submit</button>
+                            <div class="error-box"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer section start -->
+    <footer>
+        <span> Copyright <span class="far fa-copyright"></span> 2020 <span class="logo">&ltSohailBhati/&gt</span> | All rights reserved.</span>
+    </footer>
+   
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
